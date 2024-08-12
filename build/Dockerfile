@@ -1,4 +1,4 @@
-FROM quay.io/app-sre/boilerplate:image-v5.0.0 AS builder
+FROM quay.io/redhat-services-prod/boilerplate/image@sha256:e18ab04554ed7e4eff28e1417390fb0fcf1c288d6a6b3678ae57387a0d6096c8 AS builder
 ENV OPERATOR=/usr/local/bin/must-gather-operator \
     OPERATOR_BIN=must-gather-operator \
     USER_UID=1001 \
