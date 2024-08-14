@@ -1,0 +1,59 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    categories: A list of comma separated categories that your operator falls under.
+    certified: "false"
+    description: Operator to enable CEE to collect must-gathers from OSDv4 clusters.
+    containerImage: quay.io/app-sre/must-gather-operator:latest
+    support: Red Hat
+  name: must-gather-operator.v0.0.0
+  namespace: openshift-must-gather-operator
+spec:
+  displayName: must-gather-operator
+  description: Operator to enable CEE to collect must-gathers from OSDv4 clusters.
+  keywords:
+  - kubernetes
+  - openshift
+  - multi-cluster
+  - cluster
+  - must-gather
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: MustGather is the Schema for the mustgathers API
+      displayName: Must Gather
+      kind: MustGather
+      name: mustgathers.managed.openshift.io
+      version: v1alpha1
+  description: must-gather-operator
+  displayName: must-gather-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
+  links:
+  - name: Must Gather Operator
+    url: https://github.com/openshift/must-gather-operator
+  maintainers:
+  - email: wow
+    name: test
+  maturity: alpha
+  provider:
+    name: Red Hat, Inc.
+    url: https://github.com/openshift/must-gather-operator
+  version: 0.0.0
