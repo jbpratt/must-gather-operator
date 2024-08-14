@@ -7,8 +7,14 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
-      == "konflux-builds"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      event == "pull_request" &&
+      target_branch == "konflux-builds" &&
+      (
+        ".tekton/bundle-pull-request.yaml".pathChanged() ||
+        "deploy/***".pathChanged() ||
+        "config/manifests/***".pathChanged()
+      )
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: must-gather-operator
@@ -210,6 +216,53 @@ spec:
         workspace: git-auth
       - name: netrc
         workspace: netrc
+    - name: get-operator-version
+      runAfter:
+      - prefetch-dependencies
+      taskSpec:
+        results:
+        - name: version
+          description: current version of the operator
+        steps:
+        - name: get-operator-version
+          image: quay.io/redhat-services-prod/boilerplate/image:latest
+          workingDir: $(workspaces.source.path)/source
+          script: |
+            #!/usr/bin/env bash
+            make version > "$(results.version.path)"
+        workspaces:
+        - name: source
+      workspaces:
+      - name: source
+        workspace: workspace
+    - name: operator-sdk-generate-bundle
+      runAfter:
+      - get-operator-version
+      params:
+      - name: channels
+        value: stable
+      - name: package-name
+        value: must-gather-operator
+      - name: version
+        value: $(tasks.get-operator-version.results.version)
+      - name: kustomize-dir
+        value: config/manifests
+      - name: extra-service-accounts
+        value: must-gather-admin
+      runAfter:
+      - get-operator-version
+      taskRef:
+        params:
+        - name: name
+          value: operator-sdk-generate-bundle
+        - name: bundle
+          value: quay.io/konflux-ci/tekton-catalog/task-operator-sdk-generate-bundle:0.1@sha256:7d07566e0401f323aa41917a3204f3fb44564cbaf03ed10d1b48632178777266
+        - name: kind
+          value: task
+        resolver: bundles
+      workspaces:
+      - name: source
+        workspace: workspace
     - name: build-container
       params:
       - name: IMAGE
@@ -232,7 +285,7 @@ spec:
       - name: BUILD_ARGS_FILE
         value: $(params.build-args-file)
       runAfter:
-      - prefetch-dependencies
+      - operator-sdk-generate-bundle
       taskRef:
         params:
         - name: name
