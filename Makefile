@@ -1,4 +1,5 @@
 FIPS_ENABLED=true
+VERSION_MINOR=2
 
 include boilerplate/generated-includes.mk
 

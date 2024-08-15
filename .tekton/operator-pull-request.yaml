@@ -14,7 +14,8 @@ metadata:
         ".tekton/operator-pull-request.yaml".pathChanged() ||
         "build/Dockerfile".pathChanged() ||
         "***/*.go".pathChanged() ||
-        "***/go.*".pathChanged()
+        "***/go.*".pathChanged() ||
+        "Makefile".pathChanged()
       )
   creationTimestamp: null
   labels:
