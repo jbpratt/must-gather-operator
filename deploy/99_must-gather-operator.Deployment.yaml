@@ -28,7 +28,7 @@ spec:
       serviceAccountName: must-gather-operator
       containers:
         - name: must-gather-operator
-          image: quay.io/redhat-user-workloads/rhn-support-bpratt-tenant/must-gather-operator/operator@sha256:e93662c909af833aa6c3909a11d7ffe030527e18f278b7ce67bff960035ef624
+          image: quay.io/redhat-user-workloads/rhn-support-bpratt-tenant/must-gather-operator/operator@sha256:51c6505874d6bc0e6ae3b5824141eac67ef24fb5413666471ddd7973d01e0691
           command:
           - must-gather-operator
           imagePullPolicy: Always
