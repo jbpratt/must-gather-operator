@@ -31,7 +31,7 @@ spec:
   - name: dockerfile
     value: catalog.Dockerfile
   - name: operator-bundle-image
-    value: quay.io/redhat-user-workloads/rhn-support-bpratt-tenant/must-gather-operator/bundle@sha256:90822594fa26bde25cba7a35d9152064f994f54d7845213c818847d6d34aec6e
+    value: quay.io/redhat-user-workloads/rhn-support-bpratt-tenant/must-gather-operator/bundle@sha256:b310db4b374f3f22d7e6caf1e492e2f6592cc8d33685d1d21263936c2dea2f3a
   pipelineSpec:
     finally:
     - name: show-sbom
