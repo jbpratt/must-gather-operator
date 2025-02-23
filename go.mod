@@ -10,7 +10,7 @@ require (
 	github.com/openshift/api v0.0.0-20230803134339-2d9b46419536
 	github.com/openshift/operator-custom-metrics v0.5.0
 	github.com/openshift/osde2e-common v0.0.0-20231010150014-8a4449a371e6
-	github.com/operator-framework/operator-lib v0.11.0
+	github.com/operator-framework/operator-lib v0.17.0
 	github.com/prometheus/client_golang v1.16.0
 	github.com/redhat-cop/operator-utils v1.3.7
 	k8s.io/api v0.28.2
