@@ -12,7 +12,7 @@ require (
 	github.com/openshift/osde2e-common v0.0.0-20231010150014-8a4449a371e6
 	github.com/operator-framework/operator-lib v0.11.0
 	github.com/prometheus/client_golang v1.16.0
-	github.com/redhat-cop/operator-utils v1.3.7
+	github.com/redhat-cop/operator-utils/v2 v2.0.0
 	k8s.io/api v0.28.2
 	k8s.io/apimachinery v0.28.2
 	k8s.io/client-go v0.28.2
@@ -66,6 +66,7 @@ require (
 	github.com/prometheus/client_model v0.4.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.10.1 // indirect
+	github.com/redhat-cop/operator-utils v1.3.8 // indirect
 	github.com/shopspring/decimal v1.2.0 // indirect
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect

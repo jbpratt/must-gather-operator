@@ -41,7 +41,7 @@ import (
 	"github.com/openshift/must-gather-operator/version"
 	osdmetrics "github.com/openshift/operator-custom-metrics/pkg/metrics"
 	"github.com/operator-framework/operator-lib/leader"
-	"github.com/redhat-cop/operator-utils/pkg/util"
+	"github.com/redhat-cop/operator-utils/v2/pkg/util"
 
 	v1 "github.com/openshift/api/config/v1"
 	managedv1alpha1 "github.com/openshift/must-gather-operator/api/v1alpha1"
